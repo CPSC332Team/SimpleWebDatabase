@@ -1,0 +1,26 @@
+-- Insert Professors
+INSERT INTO Professors (social_security_number, name, street_address, city, state, zip_code, telephone_area_code, telephone_number, sex, title, salary, college_degrees)
+VALUES (123456789, 'John Doe', '123 Main St', 'Anytown', 'CA', '12345', '555', '9876543', 'M', 'Professor', 100000.00, 'PhD in Computer Science'),
+       (234567890, 'Jane Smith', '456 Elm St', 'Othertown', 'CA', '54321', '555', '1234567', 'F', 'Associate Professor', 75000.00, 'PhD in Business Administration'),
+       (345678901, 'Bob Johnson', '789 Oak St', 'Yetanothertown', 'CA', '67890', '555', '2345678', 'M', 'Assistant Professor', 50000.00, 'Master of Science');
+
+-- Insert Departments
+INSERT INTO Departments (department_number, name, telephone, office_location, chairperson)
+VALUES (101, 'Computer Science', '555-1234', 'Hall 200', 123456789),
+       (201, 'Business Administration', '555-5678', 'Smith 300', 234567890);
+
+-- Insert Courses
+INSERT INTO Courses (course_number, title, textbook, units, department_number)
+VALUES (1010, 'Introduction to Computer Science', 'Computer Science: An Overview', 3, 101),
+       (1020, 'Data Structures and Algorithms', 'Data Structures and Algorithms in Java', 4, 101),
+       (2010, 'Principles of Accounting', 'Financial and Managerial Accounting', 3, 201),
+       (2020, 'Marketing Fundamentals', 'Marketing Management', 3, 201);
+
+-- Insert Course Sections
+INSERT INTO Course_Sections (section_number, course_number, classroom, number_of_seats, meeting_days, start_time, end_time, professor)
+VALUES (111, 1010, 'Hall 100', 50, 'MW', '08:00:00', '09:15:00', 123456789),
+       (112, 1010, 'Hall 200', 50, 'TR', '09:30:00', '10:45:00', 123456789),
+       (121, 1020, 'Hall 300', 40, 'MW', '09:30:00', '10:45:00', 123456789),
+       (122, 1020, 'Hall 400', 40, 'TR', '11:00:00', '12:15:00', 234567890),
+       (211, 2010, 'Smith 100', 60, 'MW', '14:00:00', '15:15:00', 345678901),
+       (220, 2020, 'Smith 200', 70, 'TR', '12:30:00', '13:45:00', 234567890);

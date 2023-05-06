@@ -1,0 +1,91 @@
+-- Create Professors table
+CREATE TABLE Professors (
+  social_security_number INT(9) PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  street_address VARCHAR(50) NOT NULL,
+  city VARCHAR(30) NOT NULL,
+  state CHAR(2) NOT NULL,
+  zip_code VARCHAR(10) NOT NULL,
+  telephone_area_code VARCHAR(3) NOT NULL,
+  telephone_number VARCHAR(7) NOT NULL,
+  sex ENUM('M', 'F') NOT NULL,
+  title VARCHAR(20) NOT NULL,
+  salary DECIMAL(10, 2) NOT NULL,
+  college_degrees VARCHAR(50) NOT NULL
+);
+
+-- Create Departments table
+CREATE TABLE Departments (
+  department_number INT(4) PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  telephone VARCHAR(15) NOT NULL,
+  office_location VARCHAR(50) NOT NULL,
+  chairperson INT(9) NOT NULL,
+  FOREIGN KEY (chairperson) REFERENCES Professors(social_security_number)
+);
+
+-- Create Courses table
+CREATE TABLE Courses (
+  course_number INT(4) PRIMARY KEY,
+  title VARCHAR(50) NOT NULL,
+  textbook VARCHAR(50) NOT NULL,
+  units INT(1) NOT NULL,
+  department_number INT(4) NOT NULL,
+  FOREIGN KEY (department_number) REFERENCES Departments(department_number)
+);
+
+-- Create Prerequisite Courses table
+CREATE TABLE Prerequisite_Courses (
+  course_number INT(4) NOT NULL,
+  prerequisite_course_number INT(4) NOT NULL,
+  PRIMARY KEY (course_number, prerequisite_course_number),
+  FOREIGN KEY (course_number) REFERENCES Courses(course_number),
+  FOREIGN KEY (prerequisite_course_number) REFERENCES Courses(course_number)
+);
+
+-- Create Course Sections table
+CREATE TABLE Course_Sections (
+  section_number INT(4) PRIMARY KEY,
+  course_number INT(4) NOT NULL,
+  classroom VARCHAR(20) NOT NULL,
+  number_of_seats INT(3) NOT NULL,
+  meeting_days VARCHAR(10) NOT NULL,
+  start_time TIME NOT NULL,
+  end_time TIME NOT NULL,
+  professor INT(9) NOT NULL,
+  FOREIGN KEY (course_number) REFERENCES Courses(course_number),
+  FOREIGN KEY (professor) REFERENCES Professors(social_security_number)
+);
+
+-- Create Students table
+CREATE TABLE Students (
+  campus_wide_id INT(10) PRIMARY KEY,
+  first_name VARCHAR(20) NOT NULL,
+  last_name VARCHAR(20) NOT NULL,
+  street_address VARCHAR(50) NOT NULL,
+  city VARCHAR(30) NOT NULL,
+  state CHAR(2) NOT NULL,
+  zip_code VARCHAR(10) NOT NULL,
+  telephone_area_code VARCHAR(3) NOT NULL,
+  telephone_number VARCHAR(7) NOT NULL,
+  major_department_number INT(4) NOT NULL,
+  FOREIGN KEY (major_department_number) REFERENCES Departments(department_number)
+);
+
+-- Create Student Minors table
+CREATE TABLE Student_Minors (
+  campus_wide_id INT(10) NOT NULL,
+  department_number INT(4) NOT NULL,
+  PRIMARY KEY (campus_wide_id, department_number),
+  FOREIGN KEY (campus_wide_id) REFERENCES Students(campus_wide_id),
+  FOREIGN KEY (department_number) REFERENCES Departments(department_number)
+);
+
+-- Create Enrollment Records table
+CREATE TABLE Enrollment_Records (
+  campus_wide_id INT(10) NOT NULL,
+  section_number INT(4) NOT NULL,
+  grade CHAR(1),
+  PRIMARY KEY (campus_wide_id, section_number),
+  FOREIGN KEY (campus_wide_id) REFERENCES Students(campus_wide_id)
+);
