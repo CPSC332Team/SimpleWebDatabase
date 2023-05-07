@@ -2,8 +2,7 @@
 The project will use MySQL database and PHP to build a web database application for a university.
 
 Project Descriptions:
-You are asked to design a database for a university that satisfies the following require-
-ments:
+You are asked to design a database for a university that satisfies the following require-ments:
 1. The database keeps information of each professor, including the social security num-
 ber, name, address, telephone number, sex, title, salary, and college degrees. The address
 includes street address, city, state, and zip code. The telephone number includes the
