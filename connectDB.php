@@ -1,10 +1,12 @@
 <?php
     // username and password need to be replaced by your username and password
     // dbname is the same as your username
-    $dbusername = "8212";
-    $dbpassword = "8212";
-    $dbname = "8212";
-    $link = mysqli_connect("mariadbl", $dbusername, $dbpassword, $dbname);
+    $dbServername = "mariadb"; //mariadbl
+    $dbusername = "cs332t25"; 
+    $dbpassword = "WyDuw8o3";
+    $dbname = "cs332t25";
+    $link = mysqli_connect($dbServername, $dbusername, $dbpassword, $dbname);
+    
     if (!$link) {
         die('Could not connect: ' . mysqli_error());
     }

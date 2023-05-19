@@ -1,0 +1,91 @@
+-- Create Professors table
+CREATE TABLE Professors (
+  ssn INT(9) PRIMARY KEY,
+  Pname VARCHAR(50) NOT NULL,
+  street_address VARCHAR(50) NOT NULL,
+  city VARCHAR(30) NOT NULL,
+  state CHAR(2) NOT NULL,
+  zip_code VARCHAR(10) NOT NULL,
+  Tel_area_code VARCHAR(3) NOT NULL,
+  TelNo VARCHAR(7) NOT NULL,
+  sex ENUM('M', 'F') NOT NULL,
+  title VARCHAR(20) NOT NULL,
+  salary DECIMAL(10, 2) NOT NULL,
+  college_degrees VARCHAR(50) NOT NULL
+);
+
+-- Create Departments table
+CREATE TABLE Departments (
+  DNo INT(4) PRIMARY KEY,
+  Dname VARCHAR(50) NOT NULL,
+  TelNo VARCHAR(15) NOT NULL,
+  location VARCHAR(50) NOT NULL,
+  chairperson_ssn INT(9) NOT NULL,
+  FOREIGN KEY (chairperson_ssn) REFERENCES Professors(ssn)
+);
+
+-- Create Courses table
+CREATE TABLE Courses (
+  CourseNo INT(4) PRIMARY KEY,
+  title VARCHAR(50) NOT NULL,
+  textbook VARCHAR(50) NOT NULL,
+  units INT(1) NOT NULL,
+  DNo INT(4) NOT NULL,
+  FOREIGN KEY (DNo) REFERENCES Departments(DNo)
+);
+
+-- Create Prerequisite Courses table
+CREATE TABLE Prerequisite_Courses (
+  CourseNo INT(4) NOT NULL,
+  prerequisite_courseNo INT(4) NOT NULL,
+  PRIMARY KEY (CourseNo, prerequisite_courseNo),
+  FOREIGN KEY (CourseNo) REFERENCES Courses(CourseNo),
+  FOREIGN KEY (prerequisite_courseNo) REFERENCES Courses(CourseNo)
+);
+
+-- Create Course Sections table
+CREATE TABLE Course_Sections (
+  SectionNo INT(4) NOT NULL,
+  CourseNo INT(4) NOT NULL,
+  classroom VARCHAR(20) NOT NULL,
+  No_of_seats INT(3) NOT NULL,
+  meeting_days VARCHAR(10) NOT NULL,
+  start_time TIME NOT NULL,
+  end_time TIME NOT NULL,
+  prof_ssn INT(9) NOT NULL,
+  PRIMARY KEY (SectionNo, CourseNo, prof_ssn, classroom, meeting_days, start_time),
+  FOREIGN KEY (CourseNo) REFERENCES Courses(CourseNo),
+  FOREIGN KEY (prof_ssn) REFERENCES Professors(ssn)
+);
+
+-- Create Students table
+CREATE TABLE Students (
+  CWID INT(10) PRIMARY KEY,
+  fname VARCHAR(20) NOT NULL,
+  lname VARCHAR(20) NOT NULL,
+  street_address VARCHAR(50) NOT NULL,
+  TelNo VARCHAR(7) NOT NULL,
+  major INT(4) NOT NULL,
+  FOREIGN KEY (major) REFERENCES Departments(Dno)
+);
+
+-- Create Student Minors table
+CREATE TABLE Student_Minors (
+  CWID INT(10) NOT NULL,
+  Dno INT(4) NOT NULL,
+  PRIMARY KEY (CWID, Dno),
+  FOREIGN KEY (CWID) REFERENCES Students(CWID),
+  FOREIGN KEY (Dno) REFERENCES Departments(Dno)
+);
+
+-- Create Enrollments table
+CREATE TABLE Enrollment_Records (
+  CWID INT(10) NOT NULL,
+  CourseNo INT(4) NOT NULL,
+  SectionNo INT(4) NOT NULL,
+  grade CHAR(2),
+  PRIMARY KEY (CWID, CourseNo, SectionNo),
+  FOREIGN KEY (CWID) REFERENCES Students(CWID),
+  FOREIGN KEY (CourseNo)  REFERENCES Course_sections(CourseNo),
+  FOREIGN KEY (SectionNo) REFERENCES Course_sections(SectionNo)
+);

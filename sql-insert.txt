@@ -1,0 +1,71 @@
+-- Insert Professors
+INSERT INTO Professors (ssn, Pname, street_address, city, state, zip_code, Tel_area_code, TelNo, sex, title, salary, college_degrees)
+VALUES (123456789, 'John Doe', '123 Main St', 'Anytown', 'CA', '12345', '555', '9876543', 'M', 'Professor', 100000.00, 'PhD in Computer Science'),
+       (234567890, 'Jane Smith', '456 Elm St', 'Othertown', 'CA', '54321', '555', '1234567', 'F', 'Associate Professor', 75000.00, 'PhD in Business Administration'),
+       (345678901, 'Bob Johnson', '789 Oak St', 'Yetanothertown', 'CA', '67890', '555', '2345678', 'M', 'Assistant Professor', 50000.00, 'Master of Science');
+
+-- Insert Departments
+INSERT INTO Departments (Dno, Dname, TelNo, location, chairperson_ssn)
+VALUES (101, 'Computer Science', '555-1234', 'Hall 200', 123456789),
+       (201, 'Business Administration', '555-5678', 'Smith 300', 234567890);
+
+-- Insert Courses
+INSERT INTO Courses (CourseNo, title, textbook, units, Dno)
+VALUES (1010, 'Introduction to Computer Science', 'Computer Science: An Overview', 3, 101),
+       (1020, 'Data Structures and Algorithms', 'Data Structures and Algorithms in Java', 4, 101),
+       (2010, 'Principles of Accounting', 'Financial and Managerial Accounting', 3, 201),
+       (2020, 'Marketing Fundamentals', 'Marketing Management', 3, 201);
+
+-- Insert Course Sections
+INSERT INTO Course_Sections (SectionNo, CourseNo, classroom, No_of_seats, meeting_days, start_time, end_time, prof_ssn)
+VALUES (1111, 1010, 'Hall 100', 50, 'MW', '08:00:00', '09:15:00', 123456789),
+       (1112, 1010, 'Hall 200', 50, 'TR', '09:30:00', '10:45:00', 123456789),
+       (1111, 1020, 'Hall 300', 40, 'MW', '09:30:00', '10:45:00', 123456789),
+       (1112, 1020, 'Hall 400', 40, 'TR', '11:00:00', '12:15:00', 234567890),
+       (1111, 2010, 'Smith 100', 60, 'MW', '14:00:00', '15:15:00', 345678901),
+       (1112, 2020, 'Smith 200', 70, 'TR', '12:30:00', '13:45:00', 234567890);
+
+-- Insert 8 Student records
+INSERT INTO Students (CWID, fname, lname, street_address, TelNo, major)
+VALUES (100000001, 'John', 'Doe', '123 Main St, Anytown Ny, 12345', '1234567', 101),
+       (100000002, 'Jane', 'Smith', '456 Oak St, Othertown, NY 67890', '2345678', 101),
+       (100000003, 'Bob', 'Johnson', '789 Elm St, Another Town, NY 54321', '3456789', 101),
+       (100000004, 'Samantha', 'Lee', '246 5th Ave, Small Town, NY 13579', '4567890', 201),
+       (100000005, 'Tom', 'Brown', '135 Main St, Big City, NY, 24680', '5678901', 201),
+       (100000006, 'Emily', 'Davis', '2468 Park Ave, Metropolis, NY 13579', '6789012', 201),
+       (100000007, 'David', 'Wilson', '123 Elm St, Small Town, NY 13579', '7890123', 201),
+       (100000008, 'Sarah', 'Clark', '789 Main St, Big City, NY 24680', '8901234', 201);
+
+-- Insert 20 Enrollment records
+INSERT INTO Enrollments_Records (CWID, CourseNo, SectionNo, grade)
+VALUES 
+  -- John Doe
+  (100000001, 1010, 1111, 'A'),
+  (100000001, 1010, 1112, 'B+'),
+  (100000001, 1020, 1111, 'A-'),
+  (100000001, 1020, 1112, 'B'),
+  -- Jane Smith
+  (100000002, 1010, 1111, 'B'),
+  (100000002, 1010, 1112, 'A-'),
+  (100000002, 1020, 1111, 'B-'),
+  (100000002, 1020, 1112, 'C+'),
+  -- Bob Johnson
+  (100000003, 1010, 1111, 'B+'),
+  (100000003, 1010, 1112, 'A-'),
+  (100000003, 1020, 1111, 'C+'),
+  (100000003, 1020, 1112, 'C'),
+  -- Samantha Lee
+  (100000004, 2010, 1111, 'A'),
+  (100000004, 2020, 1112, 'B+'),
+  -- Tom Brown
+  (100000005, 2010, 1111, 'A-'),
+  (100000005, 2020, 1112, 'B'),
+  -- Emily Davis
+  (100000006, 2010, 1111, 'B'),
+  (100000006, 2020, 1112, 'B-'),
+  -- David Wilson
+  (100000007, 2010, 1111, 'B+'),
+  (100000007, 2020, 1112, 'A-'),
+  -- Sarah Clark
+  (100000008, 2010, 1111, 'C'),
+  (100000008, 2020, 1112, 'C');

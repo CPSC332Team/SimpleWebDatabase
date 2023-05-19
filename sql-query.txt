@@ -1,0 +1,21 @@
+-- FOR PROFESSOR
+-- Given the social security number of a professor, list the titles, classrooms, meeting days and time of his/her classes. 
+SELECT Courses.title, Course_Sections.classroom, Course_Sections.meeting_days, Course_Sections.start_time, Course_Sections.end_time FROM Courses, Course_Sections WHERE Course_Sections.prof_ssn = 123456789;
+--Given a course number and a section number, count how many students get each distinct grade, i.e. ‘A’, ‘A-’, ‘B+’, ‘B’, ‘B-’, etc.
+SELECT DISTINCT grade, COUNT(*) AS num_students
+FROM enrollment_records, courses
+WHERE SectionNo = 1111
+  AND CourseNo = 1010
+GROUP BY grade;
+
+-- FOR STUDENT
+-- Given a course number list the sections of the course, including the classrooms, the meeting days and time, and the number of students enrolled in each section
+SELECT Course_Sections.SectionNo, Course_Sections.classroom, Course_Sections.meeting_days, Course_Sections.start_time, Course_Sections.end_time, COUNT(Enrollment_Records.SectionNo) AS 'number_students'
+FROM Course_Sections, Enrollment_Records
+WHERE Enrollment_Records.SectionNo = Course_Sections.SectionNo
+AND Course_Sections.CourseNo = 1010
+GROUP BY SectionNo;
+-- Given the campus wide ID of a student, list all courses the student took and the grades.
+SELECT Enrollment_Records.CourseNo, Enrollment_Records.grade 
+FROM Enrollment_Records
+WHERE Enrollment_Records.CWID = 100000001;
