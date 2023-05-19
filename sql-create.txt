@@ -11,7 +11,14 @@ CREATE TABLE Professors (
   sex ENUM('M', 'F') NOT NULL,
   title VARCHAR(20) NOT NULL,
   salary DECIMAL(10, 2) NOT NULL,
-  college_degrees VARCHAR(50) NOT NULL
+);
+
+--Create Prof_Degrees table
+CREATE TABLE Prof_Degrees (
+  PSSN INT(9) NOT NULL,
+  Pdegree VARCHAR(50) NOT NULL,
+  PRIMARY KEY (PSSN, Pdegree),
+  FOREIGN KEY (PSSN) REFERENCES Professors(ssn)
 );
 
 -- Create Departments table

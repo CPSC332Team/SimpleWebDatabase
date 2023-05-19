@@ -1,8 +1,16 @@
 -- Insert Professors
-INSERT INTO Professors (ssn, Pname, street_address, city, state, zip_code, Tel_area_code, TelNo, sex, title, salary, college_degrees)
-VALUES (123456789, 'John Doe', '123 Main St', 'Anytown', 'CA', '12345', '555', '9876543', 'M', 'Professor', 100000.00, 'PhD in Computer Science'),
-       (234567890, 'Jane Smith', '456 Elm St', 'Othertown', 'CA', '54321', '555', '1234567', 'F', 'Associate Professor', 75000.00, 'PhD in Business Administration'),
-       (345678901, 'Bob Johnson', '789 Oak St', 'Yetanothertown', 'CA', '67890', '555', '2345678', 'M', 'Assistant Professor', 50000.00, 'Master of Science');
+INSERT INTO Professors (ssn, Pname, street_address, city, state, zip_code, Tel_area_code, TelNo, sex, title, salary)
+VALUES (123456789, 'John Doe', '123 Main St', 'Anytown', 'CA', '12345', '555', '9876543', 'M', 'Professor', 100000.00),
+       (234567890, 'Jane Smith', '456 Elm St', 'Othertown', 'CA', '54321', '555', '1234567', 'F', 'Associate Professor', 75000.00),
+       (345678901, 'Bob Johnson', '789 Oak St', 'Yetanothertown', 'CA', '67890', '555', '2345678', 'M', 'Assistant Professor', 50000.00);
+
+-- Insert Prof_Degrees
+INSERT INTO Prof_Degrees (PSSN, Pdegree)
+VALUES (123456789, 'PhD in Computer Science'),
+       (123456789, 'PhD in Data Science'),
+       (234567890, 'PhD in Business Administration'),
+       (234567890, 'PhD in Computer Science'),
+       (345678901, 'Master of Science');
 
 -- Insert Departments
 INSERT INTO Departments (Dno, Dname, TelNo, location, chairperson_ssn)
