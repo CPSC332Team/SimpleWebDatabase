@@ -3,7 +3,7 @@
     // dbname is the same as your username
     $dbServername = "mariadb"; //mariadbl
     $dbusername = "cs332t25"; 
-    $dbpassword = "WyDuw8o3";
+    $dbpassword = "";
     $dbname = "cs332t25";
     $link = mysqli_connect($dbServername, $dbusername, $dbpassword, $dbname);
     
